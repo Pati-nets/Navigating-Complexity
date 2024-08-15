@@ -2,12 +2,13 @@ import complexity
 from simplicity import Simplicity
 from utils import get_set_of_activities
 from convert import convert_to_marked_petri_net
-from pm4py import fitness_token_based_replay, precision_token_based_replay
+from pm4py import fitness_token_based_replay, fitness_alignments, precision_token_based_replay
 from pm4py.algo.evaluation.generalization import algorithm as generalization_evaluator
 
 # global variables for simplicity calculation
 S = Simplicity(None)
 m = 0
+use_alignments = False
 
 def init_simplicity_evaluator(tree, mode=0):
     """
@@ -125,14 +126,17 @@ def calculate_fitness(tree, log):
     process model, since precision and simplicity would also be 1.
     """
 
-    log_activities = get_set_of_activities(log)
-    tree_labels = tree._get_root().list_leaf_labels()
-    if set(log_activities) <= set(tree_labels):
-        net, im, fm = convert_to_marked_petri_net(tree)
-        fitness = fitness_token_based_replay(log, net, im, fm)['log_fitness']
-        return fitness
+    net, im, fm = convert_to_marked_petri_net(tree)
+    global use_alignments
+    if use_alignments:
+        return fitness_alignments(log, net, im, fm)['log_fitness']
     else:
-        return 0
+        log_activities = get_set_of_activities(log)
+        tree_labels = tree._get_root().list_leaf_labels()
+        if set(log_activities) <= set(tree_labels):
+            return fitness_token_based_replay(log, net, im, fm)['log_fitness']
+        else:
+            return 0
 
 
 def calculate_precision(tree, log):

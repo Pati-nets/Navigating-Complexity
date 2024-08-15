@@ -1,7 +1,7 @@
-import pm4py
-import copy
+from pm4py import view_process_tree
 from pm4py.objects.process_tree.obj import ProcessTree
 from pm4py.objects.process_tree.obj import Operator
+from copy import deepcopy
 from random import randrange, choice
 
 ID = 0
@@ -166,7 +166,7 @@ class IdentifiableProcessTree(object):
         """
 
         PT = self.build_process_tree()                                           # translate the IdentifiableProcessTree into a ProcessTree from pm4py
-        pm4py.view_process_tree(PT, format=format)                               # use the method of pm4py to visualize the process tree
+        view_process_tree(PT, format=format)                                     # use the method of pm4py to visualize the process tree
 
 
     def add_child(self, child):
@@ -343,37 +343,6 @@ class IdentifiableProcessTree(object):
         """
 
         return self.parent is not None and self.parent.operator == Operator.LOOP # return whether the parent is present and whether it is a iteration-operator
-
-#    def check_sanity(self):
-#        sanity = True
-#        if self.parent is not None and self.parent.is_leaf():
-#            print("Hi, I'm " + str(self) + ".")
-#            print("My parent is " + str(self.parent) + ", but his children-list is " + str(self.parent.children))
-#            return False
-#        if self.label is not None and not self.is_leaf():
-#            print("Hi, I'm " + str(self) + ".")
-#            print("I have the label " + str(self.label) + ", but my children-list is " + str(self.children))
-#            return False
-#        if self.operator is not None and len(self.children) < 2:
-#            print("Hi, I'm " + str(self) + ".")
-#            print("I am a proud operator node, but have only " + str(len(self.children)) + " children: " + str(self.children) + ".")
-#            return False
-#        if not self.is_leaf():
-#            for child in self.children:
-#                if child.parent is None:
-#                    print("Hi, I'm " + str(self) + ".")
-#                    print("My children are " + str(self.children) + ", but " + str(child) + " does not have a pointer to me.")
-#                    return False
-#                if child.parent._id != self._id:
-#                    print("Hi, I'm " + str(self) + ".")
-#                    print("My children are " + str(self.children) + ", but " + str(child) + " says its parent is " + str(child.parent) + ".")
-#                    print(self._id)
-#                    print(child.parent._id)
-#                    return False
-#        for child in self.children:
-#            if not child.check_sanity():
-#                sanity = False
-#        return sanity
 
 
     def list_all_nodes(self, ignore_if_parent_is_loop=False, ignore_root=False):
@@ -801,7 +770,7 @@ def randomly_split_alphabet(alphabet, parts):
     For example, the output for this example could be [['c'],['a','b','d']].
     """
 
-    to_distribute = copy.deepcopy(list(alphabet))
+    to_distribute = deepcopy(list(alphabet))
     splitted_alphabets = []
     for i in range(0, parts):
         symbol = choice(to_distribute)
@@ -827,7 +796,7 @@ def generate_random_process_tree(alphabet):
     Returns
     -------
     IdentifiableProcessTree
-        the root of the generated process tree 
+        the root of the generated process tree
     """
 
     if len(alphabet) == 1:

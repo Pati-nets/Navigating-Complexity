@@ -2,6 +2,14 @@
 ## A Tool To Inspect the Impact of Different Complexity Measures to Process Discovery
 ...
 
+### Dependencies
+To execute this program, use `Python 3.8`.
+
+The program in this repository has the following external dependencies: 
+- `pm4py v.2.7.11.12` (https://pypi.org/project/pm4py/2.7.11.12/)
+
+After you installed these dependencies, head to the folder `etm-tool`, open a terminal and execute `python main.py`. 
+
 ### Overview of the python files
 `complexity.py`:
 	Contains methods to calculate the complexity of a Petri net.
@@ -44,7 +52,9 @@
 	the mutation operations introduced in [1].
 	
 `etm.py`:
-	...
+	Contains a simple implementation of the evolutionary tree miner [1], 
+	as well as methods to store the evolution of various quality scores.
 
 `main.py`:
-	...
+	Contains the main function and methods that read user input to 
+	specify the parameters for the evolutionary tree miner.
