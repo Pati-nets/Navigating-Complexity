@@ -1,42 +1,42 @@
-## Navigating Complexity:
-## A Tool To Inspect the Impact of Different Complexity Measures to Process Discovery
+# Navigating Complexity:
+# A Tool To Inspect the Impact of Different Complexity Measures to Process Discovery
 This repository contains a tool designed to inspect the impact of properties for complexity measures on process discovery algorithms that optimize over the quality criteria. 
 
 
-### Problem description
+## Problem description
 _Process discovery_ is a task of _process mining_, whose algorithms take an _event log_ as input and output a model reflecting the behavior of the event log.
 As an example, consider the popular video game Minecraft. 
 If we record every way in which we built a house in Minecraft, we could end up with the following (very simplified) event log:
 
 <p align="center">
-	<img src="./readme-images/event-log.png" alt="an exemplary event log" width="200"/>
+	<img src="./readme-images/event-log.png" alt="an exemplary event log" width="300"/>
 </p>
 
 The task of a process discovery algorithm is to find a process model reflecting the behavior in the event log. 
 Such a process model can be, for example, a workflow net like in the following Figure:
 
 <p align="center">
-	<img src="./readme-images/process-model.png" alt="a process model for the event log" width="200"/>
+	<img src="./readme-images/process-model.png" alt="a process model for the event log" width="300"/>
 </p>
 
-To check the quality of a discovered process model, four main quality criteria have been established: fitness, precision, generalization and simplicity.
+To check the quality of a discovered process model, four main quality criteria have been established: fitness, precision, generalization, and simplicity.
 - *Fitness* evaluates how much of the behavior in the event log is also part of the process model,
 - *Precision* quantifies how much more behavior than that of the event log is part of the process model, 
 - *Generalization* estimates how much of the process behavior that is not in the event log is part of the process model and 
 - *Simplicity* evaluates how simple the process model is.
 _Scores_ for this quality dimension are values in the interval [0, 1]. 
 The goal of a discovery algorithm is to find a process model with (almost) perfect scores for these quality criteria.
-Since some of the quality dimensions contradict each other, this may not be possible and it is desirable to balance the quality scores instead.
+Since some of the quality dimensions contradict each other, this may not be possible, so we balance the quality scores instead.
 
 <p align="center">
-	<img src="./readme-images/quality-dimensions.png" alt="the four quality dimensions" width="200"/>
+	<img src="./readme-images/quality-dimensions.png" alt="the four quality dimensions" width="300"/>
 </p>
 
 The evolutionary tree miner (ETM) [1] optimizes over these quality criteria by randomly mutating process models and checking whether their quality increases.
 Instead of workflow nets, the ETM returns _process trees_ like the one shown in the following Figure:
 
 <p align="center">
-	<img src="./readme-images/process-tree.png" alt="a process tree for the event log" width="200"/>
+	<img src="./readme-images/process-tree.png" alt="a process tree for the event log" width="400"/>
 </p>
 
 The output of the ETM depends on the chosen quality measures to compute fitness, precision, generalization and simplicity. 
@@ -47,7 +47,7 @@ We extended his work by formulating properties for complexity measures[3].
 With this tool, we want to investigate how complexity measures with certain properties influence the behavior of the ETM.
 
 
-### Dependencies
+## Dependencies
 To execute this program, we advise to use `Python 3.8` or higher.
 
 The program in this repository has the following external dependencies: 
@@ -58,7 +58,7 @@ After you installed these dependencies, open a terminal in the folder `etm-tool`
 python main.py
 ```
 
-### Overview of the python files
+## Overview of the python files
 `complexity.py`:
 	Contains methods to calculate the complexity of a Petri net.
 	At the moment, the only complexity measures implemented are:
