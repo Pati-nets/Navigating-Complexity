@@ -29,14 +29,14 @@ The goal of a discovery algorithm is to find a process model with (almost) perfe
 Since some of the quality dimensions contradict each other, this may not be possible, so we balance the quality scores instead.
 
 <p align="center">
-	<img src="./readme-images/quality-dimensions.png" alt="the four quality dimensions" width="300"/>
+	<img src="./readme-images/quality-dimensions.png" alt="the four quality dimensions" width="500"/>
 </p>
 
 The evolutionary tree miner (ETM) [1] optimizes over these quality criteria by randomly mutating process models and checking whether their quality increases.
 Instead of workflow nets, the ETM returns _process trees_ like the one shown in the following Figure:
 
 <p align="center">
-	<img src="./readme-images/process-tree.png" alt="a process tree for the event log" width="400"/>
+	<img src="./readme-images/process-tree.png" alt="a process tree for the event log" width="500"/>
 </p>
 
 The output of the ETM depends on the chosen quality measures to compute fitness, precision, generalization and simplicity. 
@@ -57,6 +57,17 @@ After you installed these dependencies, open a terminal in the folder `etm-tool`
 ```
 python main.py
 ```
+After a successful execution, you can find the mining results and the evolution of the complexity scores in the output folder in `etm-tool`.
+
+## Reproducing the results of our paper
+The results we showed in our paper[3] can be found in `etm-tool/paper-results`. 
+To obtain them, we chose the following configuration of the program: 
+- Seed: 1337
+- Quality Threshold: 0.99
+- Weights for quality calculation: Default (fitness: 0.4, precision: 0.25, generalization 0.1, simplicity 0.25)
+- Number of iterations: Default (500 iterations)
+- Fitness measure: Alignment-based fitness
+
 
 ## Overview of the python files
 `complexity.py`:
