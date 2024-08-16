@@ -8,12 +8,16 @@ _Process discovery_ is a task of _process mining_, whose algorithms take an _eve
 As an example, consider the popular video game Minecraft. 
 If we record every way in which we built a house in Minecraft, we could end up with the following (very simplified) event log:
 
-<img src="./readme-images/event-log.png" alt="an exemplary event log" width="50"/>
+<p align="center">
+	<img src="./readme-images/event-log.png" alt="an exemplary event log" width="200"/>
+</p>
 
 The task of a process discovery algorithm is to find a process model reflecting the behavior in the event log. 
 Such a process model can be, for example, a workflow net like in the following Figure:
 
-<img src="./readme-images/process-model.png" alt="a process model for the event log" width="50"/>
+<p align="center">
+	<img src="./readme-images/process-model.png" alt="a process model for the event log" width="200"/>
+</p>
 
 To check the quality of a discovered process model, four main quality criteria have been established: fitness, precision, generalization and simplicity.
 - *Fitness* evaluates how much of the behavior in the event log is also part of the process model,
@@ -24,7 +28,24 @@ _Scores_ for this quality dimension are values in the interval [0, 1].
 The goal of a discovery algorithm is to find a process model with (almost) perfect scores for these quality criteria.
 Since some of the quality dimensions contradict each other, this may not be possible and it is desirable to balance the quality scores instead.
 
-<img src="./readme-images/quality-dimensions.png" alt="the four quality dimensions" width="50"/>
+<p align="center">
+	<img src="./readme-images/quality-dimensions.png" alt="the four quality dimensions" width="200"/>
+</p>
+
+The evolutionary tree miner (ETM) [1] optimizes over these quality criteria by randomly mutating process models and checking whether their quality increases.
+Instead of workflow nets, the ETM returns _process trees_ like the one shown in the following Figure:
+
+<p align="center">
+	<img src="./readme-images/process-tree.png" alt="a process tree for the event log" width="200"/>
+</p>
+
+The output of the ETM depends on the chosen quality measures to compute fitness, precision, generalization and simplicity. 
+If we were to choose a fitness measure that gives all process models the score 1, the ETM would have no way of finding a nicely fitting process model. 
+Thus, formal properties of the quality measures are very important for discovery algorithms like the ETM. 
+For fitness, precision and generalization, van der Aalst formulates 21 propositions[2] to be able to compare measures and to decide which ones have desirable properties. 
+We extended his work by formulating properties for complexity measures[3].
+With this tool, we want to investigate how complexity measures with certain properties influence the behavior of the ETM.
+
 
 ### Dependencies
 To execute this program, we advise to use `Python 3.8` or higher.
@@ -32,7 +53,10 @@ To execute this program, we advise to use `Python 3.8` or higher.
 The program in this repository has the following external dependencies: 
 - `pm4py v.2.7.11.12` (https://pypi.org/project/pm4py/2.7.11.12/)
 
-After you installed these dependencies, head to the folder `etm-tool`, open a terminal and execute `python main.py`. 
+After you installed these dependencies, open a terminal in the folder `etm-tool` and execute 
+```
+python main.py
+```
 
 ### Overview of the python files
 `complexity.py`:
@@ -82,3 +106,10 @@ After you installed these dependencies, head to the folder `etm-tool`, open a te
 `main.py`:
 	Contains the main function and methods that read user input to 
 	specify the parameters for the evolutionary tree miner.
+	
+## References
+[1] J.C.A.M. Buijs, B.F. van Dongen, W.M.P. van der Aalst, _“Quality dimensions in process discovery: the importance of fitness, precision, generalization and simplicity.”_ (2014) in International Journal of Cooperative Information Systems, 23(1), https://doi.org/10.1142/S0218843014400012
+
+[2] W.M.P. van der Aalst, _“Relating process models and event logs - 21 conformance propositions”_ (2018) ATAED@Petri Nets/ACSD https://ceur-ws.org/Vol-2115/ATAED2018-56-74.pdf
+
+[3] P. Schalk, A. Burke, R. Lorenz, _“Navigating Complexity: Comparing Complexity Measures with Weyuker’s Properties”_ (2024) (to be released)
