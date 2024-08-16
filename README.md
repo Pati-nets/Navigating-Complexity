@@ -8,12 +8,23 @@ _Process discovery_ is a task of _process mining_, whose algorithms take an _eve
 As an example, consider the popular video game Minecraft. 
 If we record every way in which we built a house in Minecraft, we could end up with the following (very simplified) event log:
 
-![an exemplary event log](./readme-images/event-log.png)
+<img src="./readme-images/event-log.png" alt="an exemplary event log" width="50"/>
 
 The task of a process discovery algorithm is to find a process model reflecting the behavior in the event log. 
 Such a process model can be, for example, a workflow net like in the following Figure:
 
-![a process model for the event log](./readme-images/process-model.png)
+<img src="./readme-images/process-model.png" alt="a process model for the event log" width="50"/>
+
+To check the quality of a discovered process model, four main quality criteria have been established: fitness, precision, generalization and simplicity.
+- *Fitness* evaluates how much of the behavior in the event log is also part of the process model,
+- *Precision* quantifies how much more behavior than that of the event log is part of the process model, 
+- *Generalization* estimates how much of the process behavior that is not in the event log is part of the process model and 
+- *Simplicity* evaluates how simple the process model is.
+_Scores_ for this quality dimension are values in the interval [0, 1]. 
+The goal of a discovery algorithm is to find a process model with (almost) perfect scores for these quality criteria.
+Since some of the quality dimensions contradict each other, this may not be possible and it is desirable to balance the quality scores instead.
+
+<img src="./readme-images/quality-dimensions.png" alt="the four quality dimensions" width="50"/>
 
 ### Dependencies
 To execute this program, we advise to use `Python 3.8` or higher.
