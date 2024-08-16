@@ -1,9 +1,19 @@
-# Navigating Complexity
+## Navigating Complexity:
 ## A Tool To Inspect the Impact of Different Complexity Measures to Process Discovery
-...
+This repository contains a tool designed to inspect the impact of properties for complexity measures on process discovery algorithms that optimize over the quality criteria. 
+
+
+### Problem description
+_Process discovery_ is a task of _process mining_, whose algorithms take an _event log_ as input and output a model reflecting the behavior of the event log.
+As an example, consider the popular video game Minecraft. 
+If we record every way in which we built a house in Minecraft, we could end up with the following (very simplified) event log:
+![An exemplary event log](images/event-log.jpg)
+The task of a process discovery algorithm is to find a process model reflecting the behavior in the event log. 
+Such a process model can be, for example, a workflow net like in the following Figure:
+![A process model for the event log](images/process-model.jpg)
 
 ### Dependencies
-To execute this program, use `Python 3.8`.
+To execute this program, we advise to use `Python 3.8` or higher.
 
 The program in this repository has the following external dependencies: 
 - `pm4py v.2.7.11.12` (https://pypi.org/project/pm4py/2.7.11.12/)

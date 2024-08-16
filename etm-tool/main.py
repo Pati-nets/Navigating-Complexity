@@ -200,10 +200,10 @@ def ask_user_for_weights():
                 print("The weights must sum to exactly 1.")
                 print("Please try again or exit the program with CTRL + C.")
     else:
-        w_f = 0.5
+        w_f = 0.4
         w_p = 0.25
         w_g = 0.1
-        w_s = 0.15
+        w_s = 0.25
         print("Using the following default values: ")
         print("fitness-weight = " + str(w_f))
         print("precision-weight = " + str(w_p))

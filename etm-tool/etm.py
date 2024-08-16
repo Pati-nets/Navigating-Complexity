@@ -196,7 +196,7 @@ def simple_evolutionary_tree_miner(log, desired_quality, w_f=0.5, w_p=0.25, w_g=
                 return population[i]
             if qual > opt_quality:
                 opt_quality_dimensions += [(qual, fit, prec, gen, sim)]
-                opt = deepcopy(tree)
+                opt = deepcopy(population[i])
                 opt_quality = qual
     # Store the evolution with respect to the quality dimensions
     store_opt_qualities(opt_quality_dimensions, output_folder)

@@ -27,7 +27,7 @@ class Simplicity:
         to the reference model.
     """
 
-    def __init__(self, reference_model: PetriNet, reference_simplicity=0.5):
+    def __init__(self, reference_model: PetriNet, reference_simplicity=0.75):
         """
         Parameters
         ----------
