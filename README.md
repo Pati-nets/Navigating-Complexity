@@ -62,11 +62,12 @@ After a successful execution, you can find the mining results and the evolution 
 ## Reproducing the results of our paper
 The results we showed in our paper[3] can be found in `etm-tool/paper-results`. 
 To obtain them, we chose the following configuration of the program: 
-- Seed: 1337
+- Seed: 59558
 - Quality Threshold: 0.99
 - Weights for quality calculation: Default (fitness: 0.4, precision: 0.25, generalization 0.1, simplicity 0.25)
 - Number of iterations: Default (500 iterations)
 - Fitness measure: Alignment-based fitness
+- Inspected tree: Sixth tree in the population
 
 
 ## Overview of the python files
